@@ -1,0 +1,275 @@
+\usepackage[english,main=russian]{babel}
+
+%\usepackage{newtxmath}
+\usepackage[no-math]{fontspec}
+\usepackage{polyglossia}
+
+\defaultfontfeatures{Ligatures = TeX, Mapping = tex-text}
+
+\setmainlanguage[babelshorthands = true]{russian}
+\setotherlanguage{english}
+
+\setmainfont{Times New Roman}
+
+\newfontfamily\cyrillicfont{Times New Roman}
+\newfontfamily\englishfont{Times New Roman}
+
+\usepackage[
+	left=30mm,
+	right=10mm, 
+	top=20mm,
+	bottom=20mm,
+]{geometry}
+
+\makeatletter
+	\renewcommand\LARGE{\@setfontsize\LARGE{22pt}{20}}
+	\renewcommand\Large{\@setfontsize\Large{20pt}{20}}
+	\renewcommand\large{\@setfontsize\large{16pt}{20}}
+\makeatother
+
+\usepackage{microtype} % Настройка переносов
+\sloppy
+
+\usepackage{setspace} % Настройка межстрочного интервала
+\onehalfspacing
+
+\usepackage{indentfirst} % Настройка абзацного отступа
+\setlength{\parindent}{12.5mm}
+
+\usepackage[unicode,hidelinks]{hyperref}
+\usepackage{xifthen}
+
+\usepackage{colortbl}
+
+\usepackage[normalem]{ulem}
+% Текст под линией 
+\newcommand*{\undertext}[2]{%
+	\begin{tabular}[t]{@{}c@{}}%
+		#1\\\relax\scriptsize(#2)%
+	\end{tabular}
+}
+
+% горизонтальная линия
+\makeatletter
+\newcommand{\vhrulefill}[1]
+{
+	\leavevmode\leaders\hrule\@height#1\hfill \kern\z@
+}
+
+\usepackage[figure,table]{totalcount} % Подсчет изображений, таблиц
+\usepackage{rotating} % Поворот изображения вместе с названием
+\usepackage{lastpage} % Для подсчета числа страниц
+
+\usepackage{titlesec}
+\usepackage{titletoc}
+\usepackage{tocloft}
+
+\setcounter{tocdepth}{5}
+
+\setlength{\cftbeforetoctitleskip}{-25pt}
+\renewcommand{\cfttoctitlefont}{\large\bfseries}
+
+\renewcommand{\cftchapfont}{\large\bfseries}
+\renewcommand{\cftsecfont}{\large}
+\renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}}
+
+\setlength{\cftbeforepartskip}{10pt}
+
+
+\setcounter{secnumdepth}{5}
+
+\titleformat{\part}[block]
+{\large\bfseries}{\thechapter}{0.5em}{\large\centering}
+
+\titleformat{\chapter}[block]
+{\large\bfseries}{\thechapter}{0.5em}{\large\raggedright}
+
+\titleformat{\section}[block]
+{\large\bfseries}{\thesection}{0.5em}{\large\raggedright}
+\renewcommand{\thesection}{\arabic{chapter}.\arabic{section}.}
+
+\titleformat{\subsection}[block]
+{\hspace{\parindent}\large\bfseries}{\thesubsection}{0.5em}{\large\raggedright}
+\renewcommand{\thesubsection}{\arabic{chapter}.\arabic{section}.\arabic{subsection}.}
+
+\titleformat{\subsubsection}[block]
+{\hspace{\parindent}\large\bfseries}{\thesubsubsection}{0.5em}{\large\raggedright}
+\renewcommand{\thesubsubsection}{\arabic{chapter}.\arabic{section}.\arabic{subsection}.\arabic{subsubsection}.}
+
+\titleclass{\part}{top}
+\titlespacing*{\part}{12.5mm}{-22pt}{10pt}
+
+\titlespacing{\chapter}{12.5mm}{-22pt}{10pt}
+\titlespacing{\section}{12.5mm}{10pt}{10pt}
+\titlespacing{\subsection}{12.5mm}{10pt}{10pt}
+\titlespacing{\subsubsection}{12.5mm}{10pt}{10pt}
+
+% ---------------------------------------- CAPTION --------------------------------- %
+
+\usepackage[
+	labelsep=endash,
+	singlelinecheck=false,
+]{caption}
+
+\captionsetup[figure]{justification=centering}
+\captionsetup[table]{justification=raggedleft}
+\captionsetup[listing]{justification=raggedright}
+
+
+% ---------------------------------------- ABBRS --------------------------------- %
+
+\usepackage{enumitem}
+\newcounter{descriptcount}
+\newlist{enumdescript}{description}{2}
+\setlist[enumdescript,1]{%
+	before={\setcounter{descriptcount}{0}%
+		\renewcommand*\thedescriptcount{\arabic{descriptcount})}}
+	,font=\stepcounter{descriptcount}\thedescriptcount~
+}
+\setlist[enumdescript,2]{%
+	before={\setcounter{descriptcount}{0}%
+		\renewcommand*\thedescriptcount{\roman{descriptcount}}}
+	,font=\stepcounter{descriptcount}\thedescriptcount~
+}
+
+\def\labelitemi{--} % Изменение буллета для списков
+
+
+% ---------------------------------------- TABLE  ----------------------------------------
+
+\usepackage{xcolor}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{multirow}
+
+\newcolumntype{O}{>{\centering\arraybackslash}p{0.08\textwidth}}
+\newcolumntype{T}{>{\centering\arraybackslash}p{0.3\textwidth}}
+\newcolumntype{L}{>{\centering\arraybackslash}p{0.45\textwidth}}
+\newcolumntype{P}{>{\centering\arraybackslash}p{0.2\textwidth}}
+\newcolumntype{R}{>{\centering\arraybackslash}p{0.22\textwidth}}
+\newcolumntype{F}{>{\centering\arraybackslash}p{0.25\textwidth}}
+\newcolumntype{S}{>{\centering\arraybackslash}p{0.15\textwidth}}
+\newcolumntype{U}{>{\centering\arraybackslash}p{0.16\textwidth}}
+\newcolumntype{N}{>{\centering\arraybackslash}p{0.19\textwidth}}
+\newcolumntype{H}{>{\centering\arraybackslash}p{0.13\textwidth}}
+\newcolumntype{E}{>{\centering\arraybackslash}p{0.18\textwidth}}
+\newcolumntype{G}{>{\centering\arraybackslash}p{0.6\textwidth}}
+\newcolumntype{Q}{>{\centering\arraybackslash}p{0.1\textwidth}}
+
+% ---------------------------------------- FIGURE ----------------------------------------
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{tikzscale}
+\usepackage[notransparent]{svg}
+\svgpath{{assets/}}
+\makeatletter
+	\let\quote@name\unquote@name
+\makeatother
+
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+
+% ----------------------------------------- MATH -----------------------------------------
+
+\usepackage{lscape}
+\usepackage{afterpage}
+
+\usepackage{amsmath}
+
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+% ----------------------------------------- LST -----------------------------------------
+\usepackage{listings}
+\usepackage{courier}
+
+\renewcommand{\lstlistingname}{Листинг}
+
+\newcommand{\codefont}{\fontfamily{pcr}}
+\newcommand{\keywordsfont}{\fontfamily{pcr}\bfseries}
+
+%\usepackage{minted}
+\lstset{
+	basicstyle=\codefont\footnotesize,
+	keywordstyle=\keywordsfont\color{black},
+	numbers=left,
+	numberstyle=\fontfamily{pcr}\tiny,
+	showstringspaces=false,
+	numbersep=10pt,
+	tabsize=4,
+	frame=tblr,	
+	xleftmargin=25pt,
+	framexleftmargin=18pt,
+	framexrightmargin=-5pt,
+%	framexbottommargin=10pt,
+%	linewidth=0.95\pagewidth
+}
+
+\usepackage[ruled,linesnumbered,resetcount,algochapter]{algorithm2e}
+\SetKwInput{KwData}{Исходные параметры}
+\SetKwInput{KwResult}{Результат}
+\SetKwInput{KwIn}{Входные данные}
+\SetKwInput{KwOut}{Выходные данные}
+\SetKwIF{If}{ElseIf}{Else}{если}{тогда}{иначе если}{иначе}{конец условия}
+\SetKwFor{While}{до тех пор, пока}{выполнять}{конец цикла}
+\SetKw{KwTo}{от}
+\SetKw{KwRet}{возвратить}
+\SetKw{Return}{возвратить}
+\SetKwBlock{Begin}{начало блока}{конец блока}
+\SetKwSwitch{Switch}{Case}{Other}{Проверить значение}{и выполнить}{вариант}{в противном случае}{конец варианта}{конец проверки значений}
+\SetKwFor{For}{цикл}{выполнять}{конец$\;$цикла} % очевидный и невероятный костыль
+\SetKwFor{ForEach}{для каждого}{выполнять}{конец цикла}
+\SetKwRepeat{Repeat}{повторять}{до тех пор, пока}
+\SetAlgorithmName{Листинг}{алгоритм}{Список алгоритмов}
+
+% ----------------------------------------- BIBLIO ---------------------------------------
+
+\usepackage{totcount}
+%\newtotcounter{citenum} %From the package documentation
+%\AtEveryBibitem{\stepcounter{citenum}}
+
+\usepackage[
+	style=gost-numeric,
+	language=auto,
+	autolang=other,
+	sorting=none,
+	movenames=true,
+	maxnames=3,
+%	minnames=3,
+	]{biblatex}
+\usepackage{csquotes}
+
+% Modify the @article style
+\DeclareFieldFormat[article]{title}{#1} % Preserve the title as is
+
+
+
+
+\newcounter{totalbibentries}
+\newcommand*{\listcounted}{}
+
+\makeatletter
+\AtDataInput{%
+	\xifinlist{\abx@field@entrykey}\listcounted
+	{}
+	{\stepcounter{totalbibentries}%
+		\listxadd\listcounted{\abx@field@entrykey}}%
+}
+\makeatother
+
+
+%\providecommand*{\BibDash}{}
+\DeclareFieldFormat{extradate}{}
+
+\DeclareFieldFormat[online]{title}{#1 [Электронный ресурс]}
+
+\DeclareFieldFormat{urldate}{(дата обращения:\addspace\thefield{urlday}\adddot \thefield{urlmonth}\adddot\thefield{urlyear})}
+
+
+
+\DeclareFieldFormat{url}{\bibstring{urlfrom}, URL:\addcolon\space\url{#1}}
+
+\usepackage{url}
+\urlstyle{same}
